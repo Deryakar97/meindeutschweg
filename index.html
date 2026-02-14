@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Almanca A1 Öğreniyorum</title>
+<title>Derya's Deutsch</title>
 <style>
   /* Genel stil */
   body {
@@ -14,36 +14,53 @@
     height: 100vh;
   }
 
-  /* Sol taraf: Kişisel alan */
+  /* Sol alan */
   .sidebar {
-    width: 220px;
+    width: 250px;
     background: rgba(255,255,255,0.3);
     padding: 20px;
+    text-align: center;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 10;
   }
 
-  .sidebar img {
-    width: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
   }
 
-  .sidebar h2 {
-    margin: 5px 0;
+  .logo h1 {
+    font-size: 24px;
     color: #034f4f;
-    text-align: center;
+    margin: 0;
   }
 
-  .sidebar p {
+  .logo img {
+    width: 30px;
+    border: 1px solid #034f4f;
+    border-radius: 3px;
+  }
+
+  .welcome {
+    font-size: 16px;
+    color: #034f4f;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  .tagline {
     font-size: 14px;
     color: #034f4f;
-    text-align: center;
+    margin-top: 5px;
+    font-style: italic;
+    line-height: 1.4;
   }
 
-  /* Sağ taraf: Hamburger Menü */
+  /* Hamburger menü */
   .menu-toggle {
     position: fixed;
     top: 20px;
@@ -66,20 +83,17 @@
   .menu {
     position: fixed;
     top: 0;
-    right: -250px;
-    width: 250px;
+    right: -260px;
+    width: 260px;
     height: 100%;
-    background: rgba(255,255,255,0.9);
-    box-shadow: -3px 0 5px rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.95);
     padding: 60px 20px;
+    box-shadow: -3px 0 5px rgba(0,0,0,0.2);
     transition: right 0.3s;
     z-index: 15;
   }
 
-  .menu.active {
-    right: 0;
-  }
-
+  .menu.active { right: 0; }
   .menu a {
     display: block;
     margin: 15px 0;
@@ -100,11 +114,27 @@
     text-align: center;
   }
 
-  h1 {
+  .content h1 {
     color: #034f4f;
     font-size: 36px;
-    z-index: 5;
     margin: 0;
+  }
+
+  .content p {
+    font-size: 18px;
+    color: #034f4f;
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  .content button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #034f4f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
 
   /* Kabarcıklar */
@@ -119,50 +149,51 @@
   }
 
   @keyframes rise {
-    0% {
-      transform: translateY(0) scale(0.5) rotateY(0deg);
-      opacity: 0.5;
-    }
-    50% {
-      opacity: 0.7;
-    }
-    100% {
-      transform: translateY(-110vh) scale(1) rotateY(360deg);
-      opacity: 0;
-    }
+    0% { transform: translateY(0) scale(0.5) rotateY(0deg); opacity: 0.5; }
+    50% { opacity: 0.7; }
+    100% { transform: translateY(-110vh) scale(1) rotateY(360deg); opacity: 0; }
   }
-
 </style>
 </head>
 <body>
 
-  <!-- Sol Kişisel Alan -->
+  <!-- Sol alan -->
   <div class="sidebar">
-    <img src="https://via.placeholder.com/100" alt="Profil Resmi">
-    <h2>Benim Adım</h2>
-    <p>Almanca öğreniyorum ve bu site sürecimi paylaşıyor.</p>
+    <div class="logo">
+      <h1>Derya's Deutsch</h1>
+      <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Alman Bayrağı">
+    </div>
+    <p class="welcome">Merhaba! Hoş geldiniz.</p>
+    <p class="tagline">“Her gün bir kelime, bir adım ileri!”</p>
   </div>
 
-  <!-- Hamburger Menü -->
+  <!-- Hamburger menü toggle -->
   <div class="menu-toggle" onclick="toggleMenu()">
-    <div></div>
-    <div></div>
-    <div></div>
+    <div></div><div></div><div></div>
   </div>
+
+  <!-- Menü -->
   <div class="menu" id="menu">
+    <a href="#">Ana Sayfa</a>
     <a href="#">Ders 1: Selamlaşmalar</a>
     <a href="#">Ders 2: Sayılar</a>
     <a href="#">Ders 3: Aile</a>
     <a href="#">Ders 4: Yiyecek</a>
-    <a href="#">Ders 5: Ev ve Günlük Yaşam</a>
+    <a href="#">Ders 5: Günlük Yaşam</a>
+    <a href="#">Günlük Kelime</a>
+    <a href="#">Mini Quiz</a>
+    <a href="#">İpuçları & Kültür</a>
+    <a href="#">Hakkında</a>
   </div>
 
   <!-- Ana içerik -->
   <div class="content">
-    <h1>Almanca A1 Öğreniyorum</h1>
+    <h1>Almanca Öğrenmeye Başla!</h1>
+    <p>Her gün yeni kelimeler ve mini derslerle öğren.</p>
+    <button onclick="alert('İlk derse gidiyoruz!')">İlk Derse Git</button>
   </div>
 
-  <!-- Kabarcıklar -->
+  <!-- Kabarcıklar JS -->
   <script>
     // Kabarcık oluştur
     for(let i=0; i<30; i++){
@@ -176,11 +207,10 @@
       document.body.appendChild(bubble);
     }
 
-    // Menü fonksiyonu
+    // Menü toggle
     function toggleMenu(){
       document.getElementById('menu').classList.toggle('active');
     }
   </script>
-
 </body>
 </html>
