@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Derya's Deutsch</title>
+<style>
+/* Genel */
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: #7fdbff;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Kabarcık arka plan */
+.bubbles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  z-index: -1;
+  background: radial-gradient(circle at bottom, #7fdbff 0%, #00bfff 100%);
+}
+
+/* Başlık ve bayrak */
+header {
+  text-align:center;
+  padding:20px 0;
+}
+header h1 {
+  font-size:2.5em;
+}
+header .flag {
+  width:40px;
+  vertical-align:middle;
+  margin-left:10px;
+}
+
+/* Hamburger Menü */
+.hamburger {
+  position:fixed;
+  top:20px;
+  right:20px;
+  font-size:2em;
+  cursor:pointer;
+  z-index:100;
+}
+.side-menu {
+  position:fixed;
+  top:0;
+  right:-250px;
+  width:250px;
+  height:100%;
+  background: rgba(0,0,50,0.95);
+  transition:0.3s;
+  padding-top:60px;
+}
+.side-menu.open { right:0; }
+.side-menu ul { list-style:none; padding:0; }
+.side-menu ul li { padding:10px 20px; }
+.side-menu a { color:#fff; text-decoration:none; }
+
+/* Kartlar */
+.card {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(6px);
+  padding:20px;
+  margin:20px auto;
+  max-width:600px;
+  border-radius:16px;
+  text-align:center;
+}
+.card-title { font-size:1.5em; margin-bottom:10px; }
+
+/* Hakkımda */
+.about-section {
+  background: rgba(255,255,255,0.1);
+  padding:30px;
+  margin:20px auto;
+  max-width:800px;
+  border-radius:16px;
+  text-align:center;
+}
+
+/* Kelime ve Cümle Kartları */
+.word-card {
+  padding:10px 15px;
+  margin:8px 5px;
+  border-radius:12px;
+  color:white;
+  cursor:pointer;
+  font-weight:500;
+  display:inline-block;
+  transition:0.2s;
+}
+.word-card:hover { transform: scale(1.05); }
+.word-card.der { background:#0ea5e9; }
+.word-card.die { background:#f472b6; }
+.word-card.das { background:#facc15; color:black; }
+.word-card.other { background:#9ca3af; }
+
+/* Kaynaklar */
+.source-card a {
+  display:block;
+  padding:10px 15px;
+  margin:5px 0;
+  border-radius:12px;
+  background:#0ea5e9;
+  color:white;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.2s;
+}
+.source-card a:hover { background:#0284c7; }
+
+/* Responsive */
+@media screen and (max-width:768px){
+  .word-card { display:block; margin:8px auto; }
+  .buttons button { display:block; margin:10px auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="bubbles"></div>
+
+<!-- Başlık -->
+<header>
+  <h1>Derya's Deutsch <img src="germany-flag.png" alt="Alman Bayrağı" class="flag"></h1>
+</header>
+
+<!-- Hamburger Menü -->
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+<nav id="sideMenu" class="side-menu">
+  <ul>
+    <li><a href="#home" onclick="closeMenu()">Ana Sayfa</a></li>
+    <li><a href="#about" onclick="closeMenu()">Hakkımda</a></li>
+    <li><a href="#a1" onclick="closeMenu()">A1 Almanca</a></li>
+    <li><a href="#kaynaklar" onclick="closeMenu()">Kaynaklar</a></li>
+  </ul>
+</nav>
+
+<!-- Ana Sayfa -->
+<section id="home">
+  <div class="card">
+    <div class="card-title">Günün Motivasyonu</div>
+    <div class="goal">Dil öğrenmek, dalış gibidir!</div>
+  </div>
+</section>
+
+<!-- Hakkımda -->
+<section id="about" class="about-section">
+  <h2>Hakkımda</h2>
+  <p>
+    Merhaba, ben Derya! Almanca öğrenmeye tutkuyla devam ediyorum ve öğrendiklerimi paylaşmak için bu siteyi hazırladım.<br>
+    Burada kelimeler, cümleler ve kaynaklarla Almanca öğrenmek eğlenceli hale geliyor.
+  </p>
+</section>
+
+<!-- A1 Almanca -->
+<section id="a1">
+  <h2>A1 Almanca</h2>
+  <div id="kelimeler">
+    <div class="word-card der" onclick="speak('der Tisch')">der Tisch – Masa</div>
+    <div class="word-card die" onclick="speak('die Tür')">die Tür – Kapı</div>
+    <div class="word-card das" onclick="speak('das Haus')">das Haus – Ev</div>
+    <div class="word-card other" onclick="speak('der Hund')">der Hund – Köpek</div>
+  </div>
+
+  <div id="cumleler">
+    <div class="word-card other" onclick="speak('Ich habe Hunger.')">Ich habe Hunger. – Açım.</div>
+    <div class="word-card other" onclick="speak('Wie geht es dir?')">Wie geht es dir? – Nasılsın?</div>
+  </div>
+</section>
+
+<!-- Kaynaklar -->
+<section id="kaynaklar">
+  <h2>Kaynaklar</h2>
+  <div class="source-card"><a href="https://www.youtube.com/@begibegi" target="_blank">YouTube – Begibegi</a></div>
+  <div class="source-card"><a href="https://www.duolingo.com/course/de/tr/Learn-German" target="_blank">Duolingo</a></div>
+  <div class="source-card"><a href="https://www.hellotalk.com/" target="_blank">HelloTalk</a></div>
+</section>
+
+<script>
+// Hamburger Menü
+function toggleMenu() {
+  document.getElementById('sideMenu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('sideMenu').classList.remove('open');
+}
+
+// Kelime ve cümle sesli okuma
+function speak(text){
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'de-DE';
+  speechSynthesis.speak(utter);
+}
+</script>
+
+</body>
+  </html>
