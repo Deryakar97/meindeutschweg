@@ -2,222 +2,185 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Derya's Deutsch</title>
+<title>Almanca A1 Öğreniyorum</title>
 <style>
-/* Genel */
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background: #7fdbff;
-  color: #fff;
-  overflow-x: hidden;
-  position: relative;
-}
+  /* Genel stil */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #a2d5c6; /* su yeşili */
+    overflow: hidden;
+    display: flex;
+    height: 100vh;
+  }
 
-/* Kabarcıklar */
-.bubble {
-  position: absolute;
-  bottom: -50px;
-  width: 20px;
-  height: 20px;
-  background: rgba(255,255,255,0.7);
-  border-radius: 50%;
-  animation: rise 10s linear infinite;
-}
-@keyframes rise {
-  0% { transform: translateY(0) scale(0.5); opacity: 0.7; }
-  50% { transform: translateY(-300px) scale(1); opacity: 0.5; }
-  100% { transform: translateY(-600px) scale(0.5); opacity: 0; }
-}
+  /* Sol taraf: Kişisel alan */
+  .sidebar {
+    width: 220px;
+    background: rgba(255,255,255,0.3);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+  }
 
-/* Başlık ve bayrak */
-header {
-  text-align:center;
-  padding:20px 0;
-}
-header h1 {
-  font-size:2.5em;
-}
-header .flag {
-  width:40px;
-  vertical-align:middle;
-  margin-left:10px;
-}
+  .sidebar img {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
 
-/* Hamburger Menü */
-.hamburger {
-  position:fixed;
-  top:20px;
-  right:20px;
-  font-size:2em;
-  cursor:pointer;
-  z-index:100;
-}
-.side-menu {
-  position:fixed;
-  top:0;
-  right:-250px;
-  width:250px;
-  height:100%;
-  background: rgba(0,0,50,0.95);
-  transition:0.3s;
-  padding-top:60px;
-}
-.side-menu.open { right:0; }
-.side-menu ul { list-style:none; padding:0; }
-.side-menu ul li { padding:10px 20px; }
-.side-menu a { color:#fff; text-decoration:none; }
+  .sidebar h2 {
+    margin: 5px 0;
+    color: #034f4f;
+    text-align: center;
+  }
 
-/* Kartlar */
-.card {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(6px);
-  padding:20px;
-  margin:20px auto;
-  max-width:600px;
-  border-radius:16px;
-  text-align:center;
-}
-.card-title { font-size:1.5em; margin-bottom:10px; }
+  .sidebar p {
+    font-size: 14px;
+    color: #034f4f;
+    text-align: center;
+  }
 
-/* Hakkımda */
-.about-section {
-  background: rgba(255,255,255,0.1);
-  padding:30px;
-  margin:20px auto;
-  max-width:800px;
-  border-radius:16px;
-  text-align:center;
-}
+  /* Sağ taraf: Hamburger Menü */
+  .menu-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-/* Kelime ve Cümle Kartları */
-.word-card {
-  padding:10px 15px;
-  margin:8px 5px;
-  border-radius:12px;
-  color:white;
-  cursor:pointer;
-  font-weight:500;
-  display:inline-block;
-  transition:0.2s;
-}
-.word-card:hover { transform: scale(1.05); }
-.word-card.der { background:#0ea5e9; }
-.word-card.die { background:#f472b6; }
-.word-card.das { background:#facc15; color:black; }
-.word-card.other { background:#9ca3af; }
+  .menu-toggle div {
+    height: 4px;
+    background: #034f4f;
+    border-radius: 2px;
+  }
 
-/* Kaynaklar */
-.source-card a {
-  display:block;
-  padding:10px 15px;
-  margin:5px 0;
-  border-radius:12px;
-  background:#0ea5e9;
-  color:white;
-  text-decoration:none;
-  font-weight:500;
-  transition:0.2s;
-}
-.source-card a:hover { background:#0284c7; }
+  .menu {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100%;
+    background: rgba(255,255,255,0.9);
+    box-shadow: -3px 0 5px rgba(0,0,0,0.2);
+    padding: 60px 20px;
+    transition: right 0.3s;
+    z-index: 15;
+  }
 
-/* Responsive */
-@media screen and (max-width:768px){
-  .word-card { display:block; margin:8px auto; }
-}
+  .menu.active {
+    right: 0;
+  }
+
+  .menu a {
+    display: block;
+    margin: 15px 0;
+    color: #034f4f;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  /* Ana içerik */
+  .content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  h1 {
+    color: #034f4f;
+    font-size: 36px;
+    z-index: 5;
+    margin: 0;
+  }
+
+  /* Kabarcıklar */
+  .bubble {
+    position: absolute;
+    bottom: -100px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    animation: rise linear infinite;
+    box-shadow: inset -5px -5px 15px rgba(255,255,255,0.8),
+                inset 5px 5px 15px rgba(0,0,0,0.2);
+  }
+
+  @keyframes rise {
+    0% {
+      transform: translateY(0) scale(0.5) rotateY(0deg);
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-110vh) scale(1) rotateY(360deg);
+      opacity: 0;
+    }
+  }
+
 </style>
 </head>
 <body>
 
-<!-- Kabarcıklar -->
-<script>
-// Kabarcıkları oluştur
-const bubbleCount = 30;
-for(let i=0;i<bubbleCount;i++){
-  const bubble = document.createElement('div');
-  bubble.classList.add('bubble');
-  bubble.style.left = Math.random()*100+'%';
-  bubble.style.width = 10 + Math.random()*20+'px';
-  bubble.style.height = bubble.style.width;
-  bubble.style.animationDuration = 5 + Math.random()*10 + 's';
-  document.body.appendChild(bubble);
-}
-</script>
-
-<!-- Başlık -->
-<header>
-  <h1>Derya's Deutsch <img src="germany-flag.png" alt="Alman Bayrağı" class="flag"></h1>
-</header>
-
-<!-- Hamburger Menü -->
-<div class="hamburger" onclick="toggleMenu()">☰</div>
-<nav id="sideMenu" class="side-menu">
-  <ul>
-    <li><a href="#home" onclick="closeMenu()">Ana Sayfa</a></li>
-    <li><a href="#about" onclick="closeMenu()">Hakkımda</a></li>
-    <li><a href="#a1" onclick="closeMenu()">A1 Almanca</a></li>
-    <li><a href="#kaynaklar" onclick="closeMenu()">Kaynaklar</a></li>
-  </ul>
-</nav>
-
-<!-- Ana Sayfa -->
-<section id="home">
-  <div class="card">
-    <div class="card-title">Günün Motivasyonu</div>
-    <div class="goal">Dil öğrenmek, dalış gibidir!</div>
-  </div>
-</section>
-
-<!-- Hakkımda -->
-<section id="about" class="about-section">
-  <h2>Hakkımda</h2>
-  <p>
-    Merhaba, ben Derya! Almanca öğrenmeye tutkuyla devam ediyorum ve öğrendiklerimi paylaşmak için bu siteyi hazırladım.<br>
-    Burada kelimeler, cümleler ve kaynaklarla Almanca öğrenmek eğlenceli hale geliyor.
-  </p>
-</section>
-
-<!-- A1 Almanca -->
-<section id="a1">
-  <h2>A1 Almanca</h2>
-  <div id="kelimeler">
-    <div class="word-card der" onclick="speak('der Tisch')">der Tisch – Masa</div>
-    <div class="word-card die" onclick="speak('die Tür')">die Tür – Kapı</div>
-    <div class="word-card das" onclick="speak('das Haus')">das Haus – Ev</div>
-    <div class="word-card other" onclick="speak('der Hund')">der Hund – Köpek</div>
+  <!-- Sol Kişisel Alan -->
+  <div class="sidebar">
+    <img src="https://via.placeholder.com/100" alt="Profil Resmi">
+    <h2>Benim Adım</h2>
+    <p>Almanca öğreniyorum ve bu site sürecimi paylaşıyor.</p>
   </div>
 
-  <div id="cumleler">
-    <div class="word-card other" onclick="speak('Ich habe Hunger.')">Ich habe Hunger. – Açım.</div>
-    <div class="word-card other" onclick="speak('Wie geht es dir?')">Wie geht es dir? – Nasılsın?</div>
+  <!-- Hamburger Menü -->
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
-</section>
+  <div class="menu" id="menu">
+    <a href="#">Ders 1: Selamlaşmalar</a>
+    <a href="#">Ders 2: Sayılar</a>
+    <a href="#">Ders 3: Aile</a>
+    <a href="#">Ders 4: Yiyecek</a>
+    <a href="#">Ders 5: Ev ve Günlük Yaşam</a>
+  </div>
 
-<!-- Kaynaklar -->
-<section id="kaynaklar">
-  <h2>Kaynaklar</h2>
-  <div class="source-card"><a href="https://www.youtube.com/@begibegi" target="_blank">YouTube – Begibegi</a></div>
-  <div class="source-card"><a href="https://www.duolingo.com/course/de/tr/Learn-German" target="_blank">Duolingo</a></div>
-  <div class="source-card"><a href="https://www.hellotalk.com/" target="_blank">HelloTalk</a></div>
-</section>
+  <!-- Ana içerik -->
+  <div class="content">
+    <h1>Almanca A1 Öğreniyorum</h1>
+  </div>
 
-<script>
-// Hamburger Menü
-function toggleMenu() {
-  document.getElementById('sideMenu').classList.toggle('open');
-}
-function closeMenu() {
-  document.getElementById('sideMenu').classList.remove('open');
-}
+  <!-- Kabarcıklar -->
+  <script>
+    // Kabarcık oluştur
+    for(let i=0; i<30; i++){
+      let bubble = document.createElement('div');
+      bubble.classList.add('bubble');
+      let size = Math.random() * 40 + 10;
+      bubble.style.width = size + 'px';
+      bubble.style.height = size + 'px';
+      bubble.style.left = Math.random() * window.innerWidth + 'px';
+      bubble.style.animationDuration = (Math.random() * 10 + 5) + 's';
+      document.body.appendChild(bubble);
+    }
 
-// Kelime ve cümle sesli okuma
-function speak(text){
-  const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = 'de-DE';
-  speechSynthesis.speak(utter);
-}
-</script>
+    // Menü fonksiyonu
+    function toggleMenu(){
+      document.getElementById('menu').classList.toggle('active');
+    }
+  </script>
 
 </body>
 </html>
